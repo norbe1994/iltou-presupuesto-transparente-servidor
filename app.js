@@ -8,9 +8,8 @@ const xss = require('xss-clean')
 // 1) DEPENDENCIES -- END
 const AppError = require('./utils/appError')
 const globalErrorHandler = require('./controllers/errorController')
-/* const tourRouter = require('./routes/tourRoutes')
 const userRouter = require('./routes/userRoutes')
- */
+
 const app = express()
 // 2) MIDDLEWARES -- START
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'))
@@ -54,8 +53,7 @@ app.use((req, _, next) => {
 // MIDDLEWARES -- END
 
 // 3) ROUTERS -- START
-/* app.use('/api/v1/tours', tourRouter)
-app.use('/api/v1/users', userRouter) */
+app.use('/api/v1/users', userRouter)
 // ROUTERS -- END
 
 app.all('*', (req, _, next) => {
