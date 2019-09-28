@@ -27,18 +27,18 @@ const presupuestoSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Es requerido especificar el monto del presupuesto anual'],
   },
-  gastos: [
-    {
-      type: mongoose.Schema.ObjectId,
-      ref: 'Gasto',
-    },
-  ],
-  ingresos: [
-    {
-      type: mongoose.Schema.ObjectId,
-      ref: 'Ingreso',
-    },
-  ],
+})
+
+presupuestoSchema.virtual('gastos', {
+  ref: 'Gasto',
+  foreignField: 'presupuesto',
+  localField: '_id',
+})
+
+presupuestoSchema.virtual('ingresos', {
+  ref: 'Ingreso',
+  foreignField: 'presupuesto',
+  localField: '_id',
 })
 
 const Presupuesto = mongoose.model('Presupuesto', presupuestoSchema)
