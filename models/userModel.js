@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   cedula: {
     type: String,
     required: [true, 'Cédula es requerida'],
+    unique: true,
   },
   email: {
     type: String,
@@ -18,7 +19,7 @@ const userSchema = new mongoose.Schema({
   photo: String,
   role: {
     type: String,
-    enum: ['user', 'admin'],
+    enum: ['user'],
     default: 'user',
   },
   password: {

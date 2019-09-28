@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const validator = require('validator')
 
 const presupuestoSchema = new mongoose.Schema({
   presidencia: {
@@ -10,7 +9,6 @@ const presupuestoSchema = new mongoose.Schema({
       values: [''],
       message: "Es requerido que el campo 'presidencia' sea uno de los valores enumerados",
     },
-    validate: [validator.isAlpha, "El campo 'presidencia' debe ser alfabético"],
   },
   anho: {
     type: Number,

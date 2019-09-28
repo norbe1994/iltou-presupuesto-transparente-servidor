@@ -1,58 +1,57 @@
 const mongoose = require('mongoose')
 
-const gastoSchema = new mongoose.Schema({
+const ingresoSchema = new mongoose.Schema({
   tipo: {
     type: String,
-    required: [true, 'Es requerido especificar el tipo del gasto'],
+    required: [true, 'Es requerido especificar el tipo del ingreso'],
     enum: {
       values: ['corriente', 'capital'],
-      message: "Gasto debe ser de tipo 'corriente' o 'capital'",
+      message: "Ingreso debe ser de tipo 'corriente' o 'capital'",
     },
   },
   presupuesto: {
     type: mongoose.Schema.ObjectId,
     ref: 'Presupuesto',
-    required: [true, 'Es requerido elegir a que presupuesto anual fiscal pertenece el gasto'],
+    required: [true, 'Es requerido elegir a que presupuesto anual fiscal pertenece el ingreso'],
   },
   institucion: {
     type: mongoose.Schema.ObjectId,
     ref: 'Institucion',
-    required: [true, 'Es requerido especificar a que institución corresponde el gasto'],
+    required: [true, 'Es requerido especificar a que institución corresponde el ingreso'],
   },
   entidad: {
     type: mongoose.Schema.ObjectId,
     ref: 'Entidad',
-    required: [true, 'Es requerido especificar a que entidad corresponde el gasto'],
+    required: [true, 'Es requerido especificar a que entidad corresponde el ingreso'],
   },
   user: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',
-    required: [true, 'Es requerido especificar que funcionario registra el gasto'],
+    required: [true, 'Es requerido especificar que funcionario registra el ingreso'],
   },
   monto: {
     type: Number,
-    required: [true, 'Es requerido especificar el monto del gasto'],
+    required: [true, 'Es requerido especificar el monto del ingreso'],
     validate: {
       validator: function(value) {
         return value > 0
       },
-      message: 'El monto del gasto debe ser mayor a cero',
+      message: 'El monto del ingreso debe ser mayor a cero',
     },
   },
-  destinoTipo: {
+  origenTipo: {
     type: String,
-    required: [true, 'Es requerido especificar el tipo de destino del gasto'],
+    required: [true, 'Es requerido especificar el tipo de origen del ingreso'],
     validate: {
       validator: function(value) {
         if (this.tipo === 'corriente')
           return [
             'operación',
             'transferencias-corrientes',
+            'aporte-al-físico',
             'subsidios',
-            'interés-de-la-deuda',
+            'interes-de-la-deuda',
           ].includes(value)
-
-        // si llegamos aquí es porque es de tipo 'capital'
         return [
           'inversiones',
           'otros-gastos-de-capital',
@@ -60,45 +59,45 @@ const gastoSchema = new mongoose.Schema({
           'amortización-de-la-deuda',
         ].includes(value)
       },
-      message: 'El tipo de destino elegido no corresponde a los válidos según el tipo de gasto',
+      message: 'El tipo de origen elegido no corresponde a los válidos según el tipo de ingreso',
     },
   },
-  destinoNombre: {
+  origenNombre: {
     type: String,
-    required: [true, 'Es requerido dar nombre al destiono del gasto'],
+    required: [true, 'Es requerido dar nombre al origen del ingreso'],
   },
-  destinoNaturaleza: {
+  origenNaturaleza: {
     type: String,
-    required: [true, 'Es requerido especificar la naturaleza del destino'],
+    required: [true, 'Es requerido especificar la naturaleza del origen'],
     enum: {
       value: ['privado', 'particular', 'público'],
-      message: 'Naturaleza de destino inválida',
+      message: 'Naturaleza de origen inválida',
     },
   },
-  destinoID: {
+  origenID: {
     type: String,
     required: [
       true,
-      'Es requerido especificar el identificador único del destino (cédula si en un particular, RUC si es una empresa, X si en público)',
+      'Es requerido especificar el identificador único del origen (cédula si en un particular,RUC si es una empresa, X si es público)',
     ],
   },
   justificacion: {
     type: String,
     required: [
       true,
-      'Es necesario incluir una justificación que explique el destino y la razón del gasto',
+      'Es necesario incluir una justificación que explique el origen y razón del ingreso',
     ],
     validate: {
       validator: function(value) {
         return value.length >= 100
       },
       message:
-        'La justificación del gasto debe de ser de al menos 100 caracteres. Incluya tanto detalle como sea posible.',
+        'La justificación del ingreso debe de ser de al menos 100 caracteres. Incluya tanto detalle como sea posible.',
     },
   },
   provincia: {
     type: String,
-    required: [true, 'Es necesario especificar a que provincia corresponde el gasto'],
+    required: [true, 'Es necesario especificar a que provincia corresponde el ingreso'],
     enum: {
       values: [
         'bocas-del-toro',
@@ -117,6 +116,6 @@ const gastoSchema = new mongoose.Schema({
   },
 })
 
-const Gasto = mongoose.model('Gasto', gastoSchema)
+const Ingreso = mongoose.model('Ingreso', ingresoSchema)
 
-module.exports = Gasto
+module.exports = Ingreso
