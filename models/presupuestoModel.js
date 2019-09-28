@@ -12,6 +12,17 @@ const presupuestoSchema = new mongoose.Schema({
     },
     validate: [validator.isAlpha, "El campo 'presidencia' debe ser alfabético"],
   },
+  anho: {
+    type: Number,
+    required: [true, 'Es requerido especificar el año al cúal el presupuesto pertenece'],
+    validate: {
+      validator: function(value) {
+        const exRegNumeroCuatroDigitos = new RegExp('/^d{4}$/')
+        return exRegNumeroCuatroDigitos.test(value)
+      },
+      message: 'Formato inválido de año, debe ser de 4 dígitos',
+    },
+  },
   monto: {
     type: Number,
     required: [true, 'Es requerido especificar el monto del presupuesto anual'],
