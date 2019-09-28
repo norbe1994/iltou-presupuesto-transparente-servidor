@@ -30,13 +30,13 @@ exports.getUser = catchAsync(async (req, res, next) => {
 exports.updateMe = catchAsync(async (req, res, next) => {
   const {
     user: { id },
-    body: { email, name },
+    body: { email },
   } = req
 
-  if (!email || !name || Object.keys(req.body).length > 2)
-    return next(new AppError('invalid body, expecting only "name" and "email" keys', 400))
+  if (!email || Object.keys(req.body).length > 1)
+    return next(new AppError('invalid body, expecting only "email" key', 400))
 
-  const updates = { name, email }
+  const updates = { email }
   const updatedUser = returnSafeUser(
     await User.findByIdAndUpdate(id, updates, { new: true, runValidators: true }),
   )

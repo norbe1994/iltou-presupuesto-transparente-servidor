@@ -33,9 +33,9 @@ const createAndSendToken = (user, statusCode, res) => {
   })
 }
 
-exports.signup = catchAsync(async ({ body: { name, email, password, passwordConfirm } }, res) => {
+exports.signup = catchAsync(async ({ body: { cedula, email, password, passwordConfirm } }, res) => {
   const newUser = await User.create({
-    name,
+    cedula,
     email,
     password,
     passwordConfirm,

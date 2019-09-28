@@ -4,9 +4,9 @@ const validator = require('validator')
 const bcrypt = require('bcryptjs')
 
 const userSchema = new mongoose.Schema({
-  name: {
+  cedula: {
     type: String,
-    required: [true, 'user must have a name'],
+    required: [true, 'Cédula es requerida'],
   },
   email: {
     type: String,
