@@ -8,7 +8,7 @@ const presupuestoSchema = new mongoose.Schema({
     // TODO leer un archivo con cádenas únicas que representen todas las presidencias históricas de Panamá
     enum: {
       values: [''],
-      message: "Es requerido que el campo 'presidencia' sea uno de los valores enúmerados",
+      message: "Es requerido que el campo 'presidencia' sea uno de los valores enumerados",
     },
     validate: [validator.isAlpha, "El campo 'presidencia' debe ser alfabético"],
   },
@@ -26,6 +26,12 @@ const presupuestoSchema = new mongoose.Schema({
   monto: {
     type: Number,
     required: [true, 'Es requerido especificar el monto del presupuesto anual'],
+    validate: {
+      validator: function(value) {
+        return value > 0
+      },
+      message: 'El monto del presupuesto debe ser mayor a cero',
+    },
   },
 })
 
