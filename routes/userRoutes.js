@@ -2,8 +2,6 @@ const express = require('express')
 const {
   getAllUsers,
   getUser,
-  createUser,
-  updateUser,
   deleteUser,
   updateMe,
   deleteMe,
@@ -31,12 +29,10 @@ router.patch('/deleteMe', protect, deleteMe)
 router
   .route('/')
   .get(getAllUsers)
-  .post(createUser)
 
 router
   .route('/:id')
   .get(protect, restrictTo('admin'), getUser)
-  .patch(updateUser)
   .delete(deleteUser)
 
 module.exports = router
