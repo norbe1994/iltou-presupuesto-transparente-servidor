@@ -26,7 +26,7 @@ const gastoSchema = new mongoose.Schema({
   },
   user: {
     type: mongoose.Schema.ObjectId,
-    ref: 'User',
+    ref: 'SystemUser',
     required: [true, 'Es requerido especificar que funcionario registra el gasto'],
   },
   monto: {
