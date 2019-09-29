@@ -29,6 +29,10 @@ const gastoSchema = new mongoose.Schema({
     ref: 'Programa',
     required: [true, 'Es requerido especificar el programa del gasto'],
   },
+  provincia: {
+    type: mongoose.Schema.ObjectId,
+    required: [true, 'Es necesario especificar a que provincia corresponde el gasto'],
+  },
   user: {
     type: mongoose.Schema.ObjectId,
     ref: 'SystemUser',
@@ -100,10 +104,6 @@ const gastoSchema = new mongoose.Schema({
       message:
         'La justificación del gasto debe de ser de al menos 100 caracteres. Incluya tanto detalle como sea posible.',
     },
-  },
-  provincia: {
-    type: mongoose.Schema.ObjectId,
-    required: [true, 'Es necesario especificar a que provincia corresponde el gasto'],
   },
   fecha: {
     type: Date,

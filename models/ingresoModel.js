@@ -24,6 +24,10 @@ const ingresoSchema = new mongoose.Schema({
     ref: 'Entidad',
     required: [true, 'Es requerido especificar a que entidad corresponde el ingreso'],
   },
+  provincia: {
+    type: mongoose.Schema.ObjectId,
+    required: [true, 'Es necesario especificar a que provincia corresponde el ingreso'],
+  },
   user: {
     type: mongoose.Schema.ObjectId,
     ref: 'SystemUser',
@@ -94,10 +98,6 @@ const ingresoSchema = new mongoose.Schema({
       message:
         'La justificación del ingreso debe de ser de al menos 100 caracteres. Incluya tanto detalle como sea posible.',
     },
-  },
-  provincia: {
-    type: mongoose.Schema.ObjectId,
-    required: [true, 'Es necesario especificar a que provincia corresponde el ingreso'],
   },
   fecha: {
     type: Date,
