@@ -24,4 +24,28 @@ const provinciaSchema = new mongoose.Schema({
 
 const Provincia = mongoose.model('Provincia', provinciaSchema)
 
+provinciaSchema.virtual('entidades', {
+  ref: 'Entidad',
+  foreignField: 'provincia',
+  localField: '_id',
+})
+
+provinciaSchema.virtual('programas', {
+  ref: 'Programa',
+  foreignField: 'provincia',
+  localField: '_id',
+})
+
+provinciaSchema.virtual('gastos', {
+  ref: 'Gasto',
+  foreignField: 'provincia',
+  localField: '_id',
+})
+
+provinciaSchema.virtual('ingresos', {
+  ref: 'Ingreso',
+  foreignField: 'provincia',
+  localField: '_id',
+})
+
 module.exports = Provincia
