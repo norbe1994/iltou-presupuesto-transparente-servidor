@@ -13,6 +13,7 @@ const systemUserRouter = require('./routes/systemUserRoutes')
 const gastosRouter = require('./routes/gastoRoutes')
 const entidadesRouter = require('./routes/entidadRoutes')
 const institucionesRouter = require('./routes/institucionRoutes')
+const presupuestosRouter = require('./routes/presupuestoRoutes')
 
 const app = express()
 // 2) MIDDLEWARES -- START
@@ -62,6 +63,7 @@ app.use('/api/v1/inspectores', systemUserRouter)
 app.use('/api/v1/gastos', gastosRouter)
 app.use('/api/v1/entidades', entidadesRouter)
 app.use('/api/v1/instituciones', institucionesRouter)
+app.use('/api/v1/presupuestos', presupuestosRouter)
 // ROUTERS -- END
 
 app.all('*', (req, _, next) => {

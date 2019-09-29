@@ -10,20 +10,20 @@ const presupuestoSchema = new mongoose.Schema(
       ],
       // TODO leer un archivo con cádenas únicas que representen todas las presidencias históricas de Panamá
       enum: {
-        values: [''],
+        values: ['jcv', 'nc', 'rm'],
         message: "Es requerido que el campo 'presidencia' sea uno de los valores enumerados",
       },
     },
-    anho: {
+    año: {
       type: Number,
       required: [true, 'Es requerido especificar el año al cúal el presupuesto pertenece'],
       validate: {
         validator: function(value) {
-          const exRegNumeroCuatroDigitos = new RegExp('/^d{4}$/')
-          return exRegNumeroCuatroDigitos.test(value)
+          return /^\d{4}$/.test(value.toString())
         },
         message: 'Formato inválido de año, debe ser de 4 dígitos',
       },
+      unique: true,
     },
     monto: {
       type: Number,
@@ -56,7 +56,7 @@ presupuestoSchema.virtual('ingresos', {
 
 presupuestoSchema.virtual('programas', {
   ref: 'Programa',
-  foreingField: 'presupuesto',
+  foreignField: 'presupuesto',
   localField: '_id',
 })
 
