@@ -70,7 +70,7 @@ const gastoSchema = new mongoose.Schema({
   },
   destinoNombre: {
     type: String,
-    required: [true, 'Es requerido dar nombre al destiono del gasto'],
+    required: [true, 'Es requerido dar nombre al destino del gasto'],
   },
   destinoNaturaleza: {
     type: String,

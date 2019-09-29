@@ -41,6 +41,12 @@ institucionSchema.virtual('programas', {
   localField: '_id',
 })
 
+institucionSchema.virtual('entidades', {
+  ref: 'Entidad',
+  foreingField: 'institucion',
+  localField: '_id',
+})
+
 const Institucion = mongoose.model('Institucion', institucionSchema)
 
 module.exports = Institucion

@@ -8,7 +8,7 @@ const entidadSchema = new mongoose.Schema(
     },
     presupuesto: {
       type: Number,
-      required: [true, 'Es necesari especificar el presupuesto de la entidad'],
+      required: [true, 'Es necesario especificar el presupuesto de la entidad'],
       validate: {
         validator: function(value) {
           return value > 0
@@ -29,6 +29,11 @@ const entidadSchema = new mongoose.Schema(
     provincia: {
       type: mongoose.Schema.ObjectId,
       required: [true, 'Es necesario especificar a que provincia corresponde la entidad'],
+    },
+    institucion: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Institucion',
+      required: 'Es necesario especificar la institución de la entidad',
     },
   },
   {
@@ -53,6 +58,14 @@ entidadSchema.virtual('programas', {
   ref: 'Programa',
   foreingField: 'entidad',
   localField: '_id',
+})
+
+entidadSchema.pre('find', function(next) {
+  this.populate({
+    path: 'guides',
+    select: '-__v -passwordChangedAt',
+  })
+  next()
 })
 
 const Entidad = mongoose.model('Entidad', entidadSchema)
