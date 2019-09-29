@@ -1,6 +1,7 @@
 const { promisify } = require('util')
 const jwt = require('jsonwebtoken')
-const SystemUser = require('../models/userModel')
+const SystemUser = require('../models/systemUserModel')
+const User = require('../models/userModel')
 const catchAsync = require('../utils/catchAsync')
 const AppError = require('../utils/appError')
 const returnSafeUser = require('../utils/returnSafeUser')
@@ -55,7 +56,7 @@ exports.protect = catchAsync(async (req, _, next) => {
   // check if token is valid
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET)
 
-  const currentUser = await SystemUser.findById(decoded.id)
+  const currentUser = await User.findById(decoded.id)
 
   // check if the user has not been deleted after token was granted
   if (!currentUser)
@@ -82,6 +83,22 @@ exports.restrictTo = (...roles) => {
     next()
   }
 }
+
+exports.createSystemUser = catchAsync(
+  async ({ body: { cedula, email, password, passwordConfirm, entidadId } }, res) => {
+    console.log({ cedula, email, password, passwordConfirm, entidadId })
+    console.log(entidadId)
+    const newUser = await SystemUser.create({
+      cedula,
+      email,
+      entidad: entidadId,
+      password,
+      passwordConfirm,
+    })
+
+    createAndSendToken(newUser, 201, res)
+  },
+)
 
 exports.updatePassword = catchAsync(async (req, res, next) => {
   const {

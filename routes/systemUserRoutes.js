@@ -2,7 +2,6 @@ const express = require('express')
 const {
   getAllSystemUsers,
   getSystemUser,
-  createSystemUser,
   updateSystemUser,
   deleteSystemUser,
   updateMe,
@@ -12,6 +11,7 @@ const {
   protect,
   restrictTo,
   updatePassword,
+  createSystemUser,
 } = require('../controllers/systemAuthController')
 
 const router = express.Router()

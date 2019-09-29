@@ -49,13 +49,6 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   })
 })
 
-exports.createSystemUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'this route is not yet implemented!',
-  })
-}
-
 exports.updateSystemUser = (req, res) => {
   res.status(500).json({
     status: 'error',

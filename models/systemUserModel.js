@@ -23,12 +23,18 @@ const systemUserSchema = new mongoose.Schema({
   },
   photo: String,
   entidad: {
-    type: mongoose.Schema.ObjectId,
+    type: String, // mongoose.Schema.ObjectId,
     ref: 'Entidad',
     required: [
       true,
       'Es necesario especificar la entidad a la cual pertenece el usuario del sistema',
     ],
+  },
+  password: {
+    type: String,
+    required: [true, 'Usuario necesita contraseña'],
+    minlength: 8,
+    select: false,
   },
   passwordConfirm: {
     type: String,
