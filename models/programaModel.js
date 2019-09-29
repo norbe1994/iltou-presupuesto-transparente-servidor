@@ -8,13 +8,14 @@ const programaSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Es requerido especificar el tipo del programa'],
       enum: {
-        values: ['funcionamiento', 'inversion'],
+        values: ['funcionamiento', 'inversión'],
         message: 'Tipo de programa inválido',
       },
     },
     nombre: {
       type: String,
       required: [true, 'Es requerido especificar el nombre de programa'],
+      unique: true,
     },
     presupuesto: {
       type: mongoose.Schema.ObjectId,
