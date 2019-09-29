@@ -16,6 +16,11 @@ const systemUserSchema = new mongoose.Schema({
     lowercase: true,
     validate: [validator.isEmail, 'Email inválido'],
   },
+  role: {
+    type: String,
+    enum: ['admin', 'system'],
+    default: 'system',
+  },
   photo: String,
   entidad: {
     type: mongoose.Schema.ObjectId,
