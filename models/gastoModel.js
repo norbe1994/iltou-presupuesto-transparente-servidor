@@ -10,32 +10,32 @@ const gastoSchema = new mongoose.Schema({
     },
   },
   presupuesto: {
-    type: mongoose.Schema.ObjectId,
+    type: String,
     ref: 'Presupuesto',
     required: [true, 'Es requerido elegir a que presupuesto anual fiscal pertenece el gasto'],
   },
   institucion: {
-    type: mongoose.Schema.ObjectId,
+    type: String,
     ref: 'Institucion',
     required: [true, 'Es requerido especificar a que institución corresponde el gasto'],
   },
   entidad: {
-    type: mongoose.Schema.ObjectId,
+    type: String,
     ref: 'Entidad',
     required: [true, 'Es requerido especificar a que entidad corresponde el gasto'],
   },
   programa: {
-    type: mongoose.Schema.ObjectId,
+    type: String,
     ref: 'Programa',
     required: [true, 'Es requerido especificar el programa del gasto'],
   },
   provincia: {
-    type: mongoose.Schema.ObjectId,
+    type: String,
     required: [true, 'Es necesario especificar a que provincia corresponde el gasto'],
   },
   user: {
     type: mongoose.Schema.ObjectId,
-    ref: 'SystemUser',
+    ref: 'User',
     required: [true, 'Es requerido especificar que funcionario registra el gasto'],
   },
   monto: {

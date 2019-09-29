@@ -10,6 +10,7 @@ const AppError = require('./utils/appError')
 const globalErrorHandler = require('./controllers/errorController')
 const userRouter = require('./routes/userRoutes')
 const systemUserRouter = require('./routes/systemUserRoutes')
+const gastosRouter = require('./routes/gastoRoutes')
 
 const app = express()
 // 2) MIDDLEWARES -- START
@@ -56,6 +57,7 @@ app.use((req, _, next) => {
 // 3) ROUTERS -- START
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/inspectores', systemUserRouter)
+app.use('/api/v1/gastos', gastosRouter)
 // ROUTERS -- END
 
 app.all('*', (req, _, next) => {

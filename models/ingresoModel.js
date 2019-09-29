@@ -30,7 +30,7 @@ const ingresoSchema = new mongoose.Schema({
   },
   user: {
     type: mongoose.Schema.ObjectId,
-    ref: 'SystemUser',
+    ref: 'User',
     required: [true, 'Es requerido especificar que funcionario registra el ingreso'],
   },
   monto: {

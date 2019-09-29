@@ -61,7 +61,7 @@ entidadSchema.virtual('programas', {
 })
 
 entidadSchema.virtual('inspectores', {
-  ref: 'SystemUser',
+  ref: 'User',
   foreingField: 'entidad',
   localField: '_id',
 })
