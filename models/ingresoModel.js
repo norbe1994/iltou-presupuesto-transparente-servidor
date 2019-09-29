@@ -70,7 +70,7 @@ const ingresoSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Es requerido especificar la naturaleza del origen'],
     enum: {
-      value: ['privado', 'particular', 'público'],
+      values: ['privado', 'particular', 'público'],
       message: 'Naturaleza de origen inválida',
     },
   },

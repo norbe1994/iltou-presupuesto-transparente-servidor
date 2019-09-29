@@ -76,7 +76,7 @@ const gastoSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Es requerido especificar la naturaleza del destino'],
     enum: {
-      value: ['privado', 'particular', 'público'],
+      values: ['privado', 'particular', 'público'],
       message: 'Naturaleza de destino inválida',
     },
   },

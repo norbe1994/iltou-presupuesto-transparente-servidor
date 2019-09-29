@@ -7,7 +7,7 @@ const programaSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Es requerido especificar el tipo del programa'],
     enum: {
-      value: ['funcionamiento', 'inversion'],
+      values: ['funcionamiento', 'inversion'],
       message: 'Tipo de programa inválido',
     },
   },
