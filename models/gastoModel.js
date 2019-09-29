@@ -106,7 +106,7 @@ const gastoSchema = new mongoose.Schema({
     },
   },
   fecha: {
-    type: Date,
+    type: String,
     required: [true, 'Es requerido incluir la fecha del gasto'],
   },
   creadoEn: {
