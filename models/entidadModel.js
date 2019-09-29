@@ -60,14 +60,6 @@ entidadSchema.virtual('programas', {
   localField: '_id',
 })
 
-entidadSchema.pre('find', function(next) {
-  this.populate({
-    path: 'guides',
-    select: '-__v -passwordChangedAt',
-  })
-  next()
-})
-
 const Entidad = mongoose.model('Entidad', entidadSchema)
 
 module.exports = Entidad
