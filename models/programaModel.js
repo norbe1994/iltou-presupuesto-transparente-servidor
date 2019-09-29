@@ -1,11 +1,13 @@
 const mongoose = require('mongoose')
+const Entidad = require('./entidadModel')
+const entidadProgramaMap = require('../static/entidadProgramaMap')
 
 const programaSchema = new mongoose.Schema({
   tipo: {
     type: String,
     required: [true, 'Es requerido especificar el tipo del programa'],
     enum: {
-      value: ['Funcionamiento', 'Inversión'],
+      value: ['funcionamiento', 'inversion'],
       message: 'Tipo de programa inválido',
     },
   },
@@ -31,5 +33,16 @@ const programaSchema = new mongoose.Schema({
 })
 
 const Programa = mongoose.model('Programa', programaSchema)
+
+programaSchema.pre('save', function(next) {
+  const entidad = Entidad.findById(this.entidad).select('nombre')
+
+  if (!entidadProgramaMap[entidad.nombre][this.tipo].includes(this.nombre)) {
+    const error = new Error('Nombre de programa no existe en la entidad')
+    next(error)
+  } else {
+    next()
+  }
+})
 
 module.exports = Programa
