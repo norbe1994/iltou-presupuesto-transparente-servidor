@@ -26,6 +26,7 @@ const ingresoSchema = new mongoose.Schema({
   },
   provincia: {
     type: mongoose.Schema.ObjectId,
+    ref: 'Provincia',
     required: [true, 'Es necesario especificar a que provincia corresponde el ingreso'],
   },
   user: {
@@ -43,7 +44,7 @@ const ingresoSchema = new mongoose.Schema({
       message: 'El monto del ingreso debe ser mayor a cero',
     },
   },
-  origenTipo: {
+  /*   origenTipo: {
     type: String,
     required: [true, 'Es requerido especificar el tipo de origen del ingreso'],
     validate: {
@@ -63,9 +64,10 @@ const ingresoSchema = new mongoose.Schema({
           'amortización-de-la-deuda',
         ].includes(value)
       },
-      message: 'El tipo de origen elegido no corresponde a los válidos según el tipo de ingreso',
+      message:
+        'El tipo de origen elegido no corresponde a ninguno de los válidos según el tipo de ingreso',
     },
-  },
+  }, */
   origenNombre: {
     type: String,
     required: [true, 'Es requerido dar nombre al origen del ingreso'],
