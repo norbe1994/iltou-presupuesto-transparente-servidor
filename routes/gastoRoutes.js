@@ -7,8 +7,8 @@ const router = express.Router()
 router
   .route('/')
   .get(protect, getAllGastos)
-  .post(protect, crearGasto)
+  .post(protect, restrictTo('system', 'admin'), crearGasto)
 
-router.route('/:id').get(protect, restrictTo('system'), getGasto)
+router.route('/:id').get(protect, getGasto)
 
 module.exports = router

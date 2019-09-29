@@ -25,25 +25,25 @@ const institucionSchema = new mongoose.Schema(
 
 institucionSchema.virtual('gastos', {
   ref: 'Gasto',
-  foreingField: 'institucion',
+  foreignField: 'institucion',
   localField: '_id',
 })
 
 institucionSchema.virtual('ingresos', {
   ref: 'Ingreso',
-  foreingField: 'institucion',
+  foreignField: 'institucion',
   localField: '_id',
 })
 
 institucionSchema.virtual('programas', {
   ref: 'Programa',
-  foreingField: 'institucion',
+  foreignField: 'institucion',
   localField: '_id',
 })
 
 institucionSchema.virtual('entidades', {
   ref: 'Entidad',
-  foreingField: 'institucion',
+  foreignField: 'institucion',
   localField: '_id',
 })
 

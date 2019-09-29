@@ -9,6 +9,6 @@ router
   .get(protect, getAllEntidades)
   .post(protect, restrictTo('admin', 'system'), crearEntidad)
 
-router.route('/:id').get(protect, restrictTo('system'), getEntidad)
+router.route('/:id').get(protect, getEntidad)
 
 module.exports = router
