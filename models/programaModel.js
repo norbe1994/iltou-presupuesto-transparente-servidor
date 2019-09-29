@@ -34,6 +34,7 @@ const programaSchema = new mongoose.Schema(
     },
     provincia: {
       type: mongoose.Schema.ObjectId,
+      ref: 'Provincia',
       required: [true, 'Es necesario especificar a que provincia corresponde el programa'],
     },
   },

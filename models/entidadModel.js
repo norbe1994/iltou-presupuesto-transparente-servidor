@@ -27,12 +27,12 @@ const entidadSchema = new mongoose.Schema(
       descripcion: String,
     }, */
     provincia: {
-      type: String,
+      type: mongoose.Schema.ObjectId,
       ref: 'Provincia',
       required: [true, 'Es necesario especificar a que provincia corresponde la entidad'],
     },
     institucion: {
-      type: String,
+      type: mongoose.Schema.ObjectId,
       ref: 'Institucion',
       required: [true, 'Es necesario especificar la institución de la entidad'],
     },
