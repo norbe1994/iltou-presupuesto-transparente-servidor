@@ -96,23 +96,8 @@ const ingresoSchema = new mongoose.Schema({
     },
   },
   provincia: {
-    type: String,
+    type: mongoose.Schema.ObjectId,
     required: [true, 'Es necesario especificar a que provincia corresponde el ingreso'],
-    enum: {
-      values: [
-        'bocas-del-toro',
-        'coclé',
-        'colón',
-        'chiriquí',
-        'darién',
-        'herrera',
-        'los-santos',
-        'panamá',
-        'veraguas',
-        'panamá-oeste',
-      ],
-      message: 'Provincia  inexistente',
-    },
   },
   fecha: {
     type: Date,

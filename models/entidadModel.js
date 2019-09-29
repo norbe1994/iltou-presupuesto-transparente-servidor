@@ -26,6 +26,10 @@ const entidadSchema = new mongoose.Schema(
       direccion: String,
       descripcion: String,
     },
+    provincia: {
+      type: mongoose.Schema.ObjectId,
+      required: [true, 'Es necesario especificar a que provincia corresponde la entidad'],
+    },
   },
   {
     toJSON: { virtuals: true },
