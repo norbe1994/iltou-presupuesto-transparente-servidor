@@ -16,7 +16,7 @@ const entidadSchema = new mongoose.Schema(
         message: 'El presupuesto debe ser mayor a cero',
       },
     },
-    ubicacion: {
+    /*   ubicacion: {
       type: {
         type: String,
         default: 'Point',
@@ -25,15 +25,16 @@ const entidadSchema = new mongoose.Schema(
       coordinadas: [Number],
       direccion: String,
       descripcion: String,
-    },
+    }, */
     provincia: {
-      type: mongoose.Schema.ObjectId,
+      type: String,
+      ref: 'Provincia',
       required: [true, 'Es necesario especificar a que provincia corresponde la entidad'],
     },
     institucion: {
-      type: mongoose.Schema.ObjectId,
+      type: String,
       ref: 'Institucion',
-      required: 'Es necesario especificar la institución de la entidad',
+      required: [true, 'Es necesario especificar la institución de la entidad'],
     },
   },
   {
@@ -44,25 +45,23 @@ const entidadSchema = new mongoose.Schema(
 
 entidadSchema.virtual('gastos', {
   ref: 'Gasto',
-  foreingField: 'entidad',
+  foreignField: 'entidad',
   localField: '_id',
 })
 
 entidadSchema.virtual('ingresos', {
   ref: 'Ingreso',
-  foreingField: 'entidad',
+  foreignField: 'entidad',
   localField: '_id',
 })
-
 entidadSchema.virtual('programas', {
   ref: 'Programa',
-  foreingField: 'entidad',
+  foreignField: 'entidad',
   localField: '_id',
 })
-
 entidadSchema.virtual('inspectores', {
   ref: 'User',
-  foreingField: 'entidad',
+  foreignField: 'entidad',
   localField: '_id',
 })
 
