@@ -45,6 +45,12 @@ entidadSchema.virtual('ingresos', {
   localField: '_id',
 })
 
+entidadSchema.virtual('programas', {
+  ref: 'Programa',
+  foreingField: 'programa',
+  localField: '_id',
+})
+
 const Entidad = mongoose.model('Entidad', entidadSchema)
 
 module.exports = Entidad
