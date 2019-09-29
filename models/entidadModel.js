@@ -47,7 +47,7 @@ entidadSchema.virtual('ingresos', {
 
 entidadSchema.virtual('programas', {
   ref: 'Programa',
-  foreingField: 'programa',
+  foreingField: 'entidad',
   localField: '_id',
 })
 

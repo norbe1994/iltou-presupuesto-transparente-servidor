@@ -54,6 +54,12 @@ presupuestoSchema.virtual('ingresos', {
   localField: '_id',
 })
 
+presupuestoSchema.virtual('programas', {
+  ref: 'Programa',
+  foreingField: 'presupuesto',
+  localField: '_id',
+})
+
 const Presupuesto = mongoose.model('Presupuesto', presupuestoSchema)
 
 module.exports = Presupuesto
