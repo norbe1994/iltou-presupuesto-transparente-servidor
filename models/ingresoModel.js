@@ -78,7 +78,7 @@ const ingresoSchema = new mongoose.Schema({
     type: String,
     required: [
       true,
-      'Es requerido especificar el identificador único del origen (cédula si en un particular,RUC si es una empresa, X si es público)',
+      'Es requerido especificar el identificador único del origen (cédula si en un particular,RUC si es una empresa, pid si es público)',
     ],
   },
   justificacion: {
@@ -113,6 +113,14 @@ const ingresoSchema = new mongoose.Schema({
       ],
       message: 'Provincia  inexistente',
     },
+  },
+  fecha: {
+    type: Date,
+    required: [true, 'Es requerido incluir la fecha del ingreso'],
+  },
+  creadoEn: {
+    type: Date,
+    default: Date.now,
   },
 })
 

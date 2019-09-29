@@ -79,7 +79,7 @@ const gastoSchema = new mongoose.Schema({
     type: String,
     required: [
       true,
-      'Es requerido especificar el identificador único del destino (cédula si en un particular, RUC si es una empresa, X si en público)',
+      'Es requerido especificar el identificador único del destino (cédula si en un particular, RUC si es una empresa, pid si en público)',
     ],
   },
   justificacion: {
@@ -114,6 +114,14 @@ const gastoSchema = new mongoose.Schema({
       ],
       message: 'Provincia  inexistente',
     },
+  },
+  fecha: {
+    type: Date,
+    required: [true, 'Es requerido incluir la fecha del gasto'],
+  },
+  creadoEn: {
+    type: Date,
+    default: Date.now,
   },
 })
 
